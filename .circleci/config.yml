@@ -1,8 +1,12 @@
 version: 2.1
 orbs:
-  cypress: cypress-io/cypress@1
+  cypress: cypress-io/cypress@1.27.0
 workflows:
   build:
     jobs:
+      - cypress/install:
+         build: 'npm install build'
       - cypress/run:
+          requires:
+            - cypress/install
           record: true
